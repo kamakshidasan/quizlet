@@ -10,16 +10,35 @@ def download_flashcard_set(setID):
         return
 
     # Get computer friendly set name
-    cardURL = flashcardSet['url'].split('/')[-2]
-    setFilename = cardURL + ".quiz"
-    setPath = os.path.join(quizlet.SET_DIR, setFilename)
+    #cardURL = flashcardSet['url'].split('/')[-2]
+    #setFilename = cardURL + ".json"
+    #setPath = os.path.join(quizlet.SET_DIR, setFilename)
 
+    #f = open(setPath, 'w')
+    #quizlet.save_flashcard_set_terms_to_file(flashcardSet, f)
+    #f.close()
+	
+    words = quizlet.save_terms(flashcardSet)
+    
+    setFilename = 'word-list1.txt'
+    setPath = os.path.join(quizlet.SET_DIR, setFilename)
     f = open(setPath, 'w')
-    quizlet.save_flashcard_set_terms_to_file(flashcardSet, f)
+	
+    for word in words[:len(words)/2]:
+        print >> f, word.encode("ascii")
+
+    setFilename = 'word-list2.txt'
+    setPath = os.path.join(quizlet.SET_DIR, setFilename)
+    f = open(setPath, 'w')
+	
+    for word in words[len(words)/2:]:
+        print >> f, word.encode("ascii")
+	
     f.close()
 
     title = flashcardSet['title']
-    print("Downloaded '%s' set to sets/%s" % (title, setFilename))
+
+    print("Words Downloaded!")
 
 
 if __name__ == "__main__":
