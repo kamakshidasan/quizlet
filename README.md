@@ -139,4 +139,8 @@ You can combine both `--shuffle` and `--hints` if you wish.
 
     $ python study.py --hints --shuffle sets/computer-security-management-ch5-flash-cards.quiz
 
+### Importing into Quizlet
+
+Import the output files with the delimiter as '|' for Between Term & Definition and '||' for Between Cards
+
 Enjoy studying!
